@@ -14,18 +14,12 @@ namespace DeadlockSample.SqlServer.Mapping
                 .IsRequired(true);
 
             entityBuilder.HasOne(p => p.AddressOne)
-                .WithMany()
-                .HasForeignKey(p => p.AddressOneId)
+                .WithOne(a => a.Person)
                 .OnDelete(DeleteBehavior.Restrict);
-
-            entityBuilder.Property(p => p.AddressOneId);
 
             entityBuilder.HasOne(p => p.AddressTwo)
-                .WithMany()
-                .HasForeignKey(p => p.AddressTwoId)
+                .WithOne(a => a.Person)
                 .OnDelete(DeleteBehavior.Restrict);
-
-            entityBuilder.Property(p => p.AddressTwoId);
         }
     }
 }
